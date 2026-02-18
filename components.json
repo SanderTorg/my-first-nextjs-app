@@ -14,7 +14,7 @@
   "rtl": false,
   "aliases": {
     "components": "@/components/ui",
-    "utils": "@/lib/utils/aceternity",
+    "utils": "@/lib/utils/aceternity-style-utils",
     "ui": "@/components/ui",
     "lib": "@/lib",
     "hooks": "@/lib/hooks"
