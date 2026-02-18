@@ -8,6 +8,7 @@ export default function Home() {
         <div>
           <h1>Home</h1>
           <Link href="/view/about">About</Link>
+          <Link href="/view/todos">Todos</Link>
         </div>
 
         <h1>Welcome to Dorgy Codes</h1>
