@@ -3,19 +3,21 @@ import Link from "next/link";
 
 function Header() {
   return (
-    <header>
-      <nav className="bg-gray-800 text-white p-4">
-        <Link href="/">
-          <Button>Home</Button>
-        </Link>
-        <Link href="/view/about">
-          <Button>About</Button>
-        </Link>
-        <Link href="/view/todos">
-          <Button>Todos</Button>
-        </Link>
-      </nav>
-    </header>
+    <>
+      <header className="bg-gray-800 text-white p-4 justify-start flex gap-2.5">
+        <nav className="bg-gray-800 text-white p-4 justify-start flex gap-2.5">
+          <Link href="/">
+            <Button className="cursor-pointer">Home</Button>
+          </Link>
+          <Link href="/view/about">
+            <Button className="cursor-pointer">About</Button>
+          </Link>
+          <Link href="/view/todos">
+            <Button className="cursor-pointer">Todos</Button>
+          </Link>
+        </nav>
+      </header>
+    </>
   );
 }
 
