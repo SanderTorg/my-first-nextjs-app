@@ -24,7 +24,11 @@ function TodoListItem({ id, title, dueDate, priority }: Todo) {
           <p>Priority: {priority}</p>
         </CardDescription>
         <CardAction>
-          <Button variant="link">Sign Up</Button>
+          <Link href={`/view/todos/${id}`}>
+            <Button variant="outline" className="cursor-pointer">
+              View Details
+            </Button>
+          </Link>
         </CardAction>
       </CardHeader>
     </Card>
