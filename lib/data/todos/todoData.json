@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Buy groceries",
+      "description": "Milk, Bread, Eggs, Butter",
+      "dueDate": "2024-06-01",
+      "priority": "High",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Clean the house",
+      "description": "Vacuum, Dust, Mop",
+      "dueDate": "2024-06-02",
+      "priority": "Medium",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "Finish project",
+      "description": "Complete the final report and submit it",
+      "dueDate": "2024-06-03",
+      "priority": "High",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "Call mom",
+      "description": "Check in and see how she's doing",
+      "dueDate": "2024-06-04",
+      "priority": "Low",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "title": "Exercise",
+      "description": "Go for a run or do a workout at home",
+      "dueDate": "2024-06-05",
+      "priority": "Medium",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "title": "Read a book",
+      "description": "Spend some time reading for pleasure",
+      "dueDate": "2024-06-06",
+      "priority": "Low",
+      "completed": true
+    },
+    {
+      "id": 7,
+      "title": "Pay bills",
+      "description": "Make sure all bills are paid on time",
+      "dueDate": "2024-06-07",
+      "priority": "High",
+      "completed": false
+    },
+    {
+      "id": 8,
+      "title": "Plan weekend trip",
+      "description": "Research destinations and make reservations",
+      "dueDate": "2024-06-08",
+      "priority": "Medium",
+      "completed": true
+    },
+    {
+      "id": 9,
+      "title": "Organize closet",
+      "description": "Sort through clothes and donate what you don't need",
+      "dueDate": "2024-06-09",
+      "priority": "Low",
+      "completed": false
+    },
+    {
+      "id": 10,
+      "title": "Cook dinner",
+      "description": "Try out a new recipe and cook a delicious meal",
+      "dueDate": "2024-06-10",
+      "priority": "Medium",
+      "completed": true
+    }
+  ]
+}

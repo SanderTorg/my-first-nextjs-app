@@ -1,4 +1,6 @@
+import { DateTime } from "luxon";
 import { Button } from "../ui/button";
+import { Todo } from "@/types/todoTypes";
 import {
   Card,
   CardAction,
@@ -6,18 +8,20 @@ import {
   CardTitle,
   CardDescription,
 } from "../ui/card";
+import Link from "next/link";
 
-interface IProps {
-  title: string;
-}
+function TodoListItem({ id, title, dueDate, priority }: Todo) {
+  const formattedDateTime = DateTime.fromISO(dueDate);
 
-function TodoListItem({ title }: IProps) {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <Link href={`/view/todos/${id}`}>
+          <CardTitle>{title}</CardTitle>
+        </Link>
         <CardDescription>
-          Enter your email below to login to your account
+          <p>Due Date: {formattedDateTime.toISODate()}</p>
+          <p>Priority: {priority}</p>
         </CardDescription>
         <CardAction>
           <Button variant="link">Sign Up</Button>
