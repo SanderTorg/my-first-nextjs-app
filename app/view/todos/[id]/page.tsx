@@ -1,5 +1,4 @@
 import { Todo } from "@/types/todoTypes";
-import data from "@/lib/data/todos/todoData.json";
 import { DateTime } from "luxon";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
