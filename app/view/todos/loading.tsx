@@ -1,6 +1,6 @@
-("use client");
+"use client";
 
-export function Loading() {
+export default function Loading() {
   return (
     <div className="flex h-screen items-center justify-center">
       <p className="text-2xl font-semibold">Loading...</p>
