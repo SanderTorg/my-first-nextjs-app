@@ -10,9 +10,12 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { BASE_URL } from "../page";
+
 import { Suspense } from "react";
 import TodoDetailLoading from "./loading";
+
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 async function TodoDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -45,7 +48,6 @@ async function TodoDetailPage({ params }: { params: Promise<{ id: string }> }) {
           </CardHeader>
 
           <CardContent className="grid gap-4">
-            {/* Status */}
             <div className="flex items-center justify-between rounded-lg border p-4">
               <span className="text-sm font-medium text-muted-foreground">
                 Status
@@ -66,7 +68,6 @@ async function TodoDetailPage({ params }: { params: Promise<{ id: string }> }) {
               </span>
             </div>
 
-            {/* Due Date */}
             <div className="flex items-center justify-between rounded-lg border p-4">
               <span className="text-sm font-medium text-muted-foreground">
                 Due Date
@@ -74,7 +75,6 @@ async function TodoDetailPage({ params }: { params: Promise<{ id: string }> }) {
               <span className="text-sm font-semibold">{formattedDate}</span>
             </div>
 
-            {/* Priority */}
             <div className="flex items-center justify-between rounded-lg border p-4">
               <span className="text-sm font-medium text-muted-foreground">
                 Priority
