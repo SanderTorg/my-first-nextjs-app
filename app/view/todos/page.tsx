@@ -1,46 +1,29 @@
 import { TodoList } from "@/components/todo-list/TodoList";
 import { Todo } from "@/types/todoTypes";
 import { Suspense } from "react";
-import data from "@/lib/data/todos/todoData.json";
+import TodoListSkeleton from "@/components/todo-list/TodoListSkeleton";
+import CreateTodoForm from "@/components/todo-create-form/CreateTodoForm";
+import fs from "fs/promises";
+import path from "path";
 
-export const BASE_URL =
-  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+export const dynamic = "force-dynamic";
 
-export default async function TodosPage() {
-  const todos: Todo[] = data.data as Todo[];
-
-  return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        {<TodoList todos={todos} />}
-      </Suspense>
-    </>
+async function getTodos(): Promise<Todo[]> {
+  const raw = await fs.readFile(
+    path.join(process.cwd(), "lib", "data", "todos", "todoData.json"),
+    "utf-8",
   );
+  return JSON.parse(raw).data as Todo[];
 }
 
-//
-// ("use client");
+export default async function TodosPage() {
+  const todos = await getTodos();
 
-// function error() {
-//   return (
-//     <div className="flex h-screen items-center justify-center">
-//       <h1 className="text-2xl font-bold">
-//         An error occurred while fetching the todos.
-//       </h1>
-//     </div>
-//   );
-// }
-
-// export default error;
-//
-
-// ("use client");
-
-// function Loading() {
-//   return (
-//     <div className="flex h-screen items-center justify-center">
-//       <p className="text-2xl font-semibold">Loading...</p>
-//     </div>
-//   );
-// }
-// export default Loading;
+  return (
+    <div className="grid gap-8">
+      <Suspense fallback={<TodoListSkeleton />}>
+        <TodoList todos={todos} />
+      </Suspense>
+    </div>
+  );
+}
