@@ -2,7 +2,6 @@ import { TodoList } from "@/components/todo-list/TodoList";
 import { Todo } from "@/types/todoTypes";
 import { Suspense } from "react";
 import TodoListSkeleton from "@/components/todo-list/TodoListSkeleton";
-import CreateTodoForm from "@/components/todo-create-form/CreateTodoForm";
 import fs from "fs/promises";
 import path from "path";
 
