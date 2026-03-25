@@ -4,6 +4,8 @@ import fs from "fs/promises";
 import path from "path";
 import { revalidatePath } from "next/cache";
 import { Todo } from "@/types/todoTypes";
+import { todosTable } from "@/lib/db/schema";
+import { db } from "@/lib/db/db";
 
 const DATA_FILE_PATH = path.join(
   process.cwd(),
@@ -25,6 +27,7 @@ async function writeTodos(todos: Todo[]): Promise<void> {
 
 export async function createTodoAction(formData: FormData) {
   const title = formData.get("title") as string;
+  const description = formData.get("description") as string | null;
   const dueDate = formData.get("dueDate") as string;
   const priority = formData.get("priority") as "Low" | "Medium" | "High";
 
@@ -32,20 +35,24 @@ export async function createTodoAction(formData: FormData) {
     throw new Error("Title is required");
   }
 
-  const todos = await readTodos();
+  // Map priority to lowercase for DB
+  const dbPriority = priority ? priority.toLowerCase() : "low";
 
-  const newId = todos.length > 0 ? Math.max(...todos.map((t) => t.id)) + 1 : 1;
+  // Use current date for createdAt/updatedAt
+  const now = new Date();
 
-  const newTodo: Todo = {
-    id: newId,
+  const newTodo = {
+    id: crypto.randomUUID(),
     title: title.trim(),
-    dueDate: dueDate || new Date().toISOString().split("T")[0],
-    priority: priority || undefined,
-    completed: false,
+    description: description || "",
+    dueDate: dueDate ? new Date(dueDate) : now,
+    priority: dbPriority,
+    isCompleted: false,
+    createdAt: now,
+    updatedAt: now,
   };
 
-  todos.push(newTodo);
-  await writeTodos(todos);
+  await db.insert(todosTable).values(newTodo).returning();
 
   revalidatePath("/view/todos");
 }

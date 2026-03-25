@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { Button } from "../ui/button";
-import { Todo } from "@/types/todoTypes";
+
 import {
   Card,
   CardAction,
@@ -9,9 +9,10 @@ import {
   CardDescription,
 } from "../ui/card";
 import Link from "next/link";
+import { Todo } from "@/lib/db/schema";
 
 function TodoListItem({ id, title, dueDate, priority }: Todo) {
-  const formattedDateTime = DateTime.fromISO(dueDate);
+  const formattedDateTime = DateTime.fromJSDate(dueDate);
 
   return (
     <Card className="w-full">

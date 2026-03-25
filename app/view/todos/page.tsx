@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import TodoListSkeleton from "@/components/todo-list/TodoListSkeleton";
 import fs from "fs/promises";
 import path from "path";
+import { todosTable } from "@/lib/db/schema";
+import { db } from "@/lib/db/db";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +18,7 @@ async function getTodos(): Promise<Todo[]> {
 }
 
 export default async function TodosPage() {
-  const todos = await getTodos();
+  const todos = await db.select().from(todosTable);
 
   return (
     <div className="grid gap-8">

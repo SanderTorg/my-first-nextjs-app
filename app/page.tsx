@@ -1,5 +1,6 @@
 import { signIn } from "@/auth";
 import { Button } from "@/components/ui/button";
+import CreateTodoForm from "@/components/todo-create-form/CreateTodoForm";
 
 export default function Home() {
   return (
@@ -22,6 +23,11 @@ export default function Home() {
             This is a simple todo app built with Next.js 13, showcasing the use
             of server components, API routes, and authentication with NextAuth.
           </p>
+        </div>
+
+        {/* Todo creation form */}
+        <div className="mt-8 w-full">
+          <CreateTodoForm />
         </div>
       </main>
     </div>

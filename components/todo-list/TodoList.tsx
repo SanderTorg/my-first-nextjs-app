@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Todo } from "@/types/todoTypes";
+
 import { motion, AnimatePresence } from "motion/react";
 import TodoListItem from "../todo-list-item/TodoListItem";
 import CreateTodoForm from "../todo-create-form/CreateTodoForm";
+import { Todo } from "@/lib/db/schema";
 
 interface TodoListProps {
   todos: Todo[];
@@ -33,7 +34,7 @@ export function TodoList({ todos }: TodoListProps) {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState<FilterType>("all");
 
-  const completedCount = todos.filter((t) => t.completed).length;
+  const completedCount = todos.filter((t) => t.isCompleted).length;
   const activeCount = todos.length - completedCount;
 
   const filteredTodos = todos.filter((todo) => {
@@ -42,8 +43,8 @@ export function TodoList({ todos }: TodoListProps) {
       .includes(search.toLowerCase());
     const matchesFilter =
       filter === "all" ||
-      (filter === "active" && !todo.completed) ||
-      (filter === "completed" && todo.completed);
+      (filter === "active" && !todo.isCompleted) ||
+      (filter === "completed" && todo.isCompleted);
     return matchesSearch && matchesFilter;
   });
 
@@ -135,14 +136,26 @@ export function TodoList({ todos }: TodoListProps) {
             animate="visible"
           >
             {filteredTodos.map(
-              ({ id, title, priority, dueDate, completed }) => (
+              ({
+                id,
+                title,
+                description,
+                priority,
+                dueDate,
+                isCompleted,
+                createdAt,
+                updatedAt,
+              }) => (
                 <motion.div key={id} variants={itemVariants} exit="exit" layout>
                   <TodoListItem
                     id={id}
                     title={title}
+                    description={description}
                     priority={priority}
                     dueDate={dueDate}
-                    completed={completed}
+                    isCompleted={isCompleted}
+                    createdAt={createdAt}
+                    updatedAt={updatedAt}
                   />
                 </motion.div>
               ),
